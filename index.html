@@ -68,7 +68,7 @@
 <body>
     <div class="container">
         <h1>Tic-Tac-Toe</h1>
-        <p class="subtitle">You (X) vs Computer (O)</p>
+        <p class="subtitle">Computer (O) goes first &mdash; You are X</p>
 
         <div class="difficulty">
             <label for="difficulty">Difficulty:</label>
@@ -230,15 +230,16 @@
         function resetGame() {
             board = Array(9).fill('');
             gameOver = false;
-            humanTurn = true;
-            statusEl.textContent = 'Your turn';
+            humanTurn = false;
+            statusEl.textContent = 'Computer thinking...';
             render();
+            setTimeout(computerMove, 500);
         }
 
         cells.forEach(cell => cell.addEventListener('click', handleCellClick));
         resetBtn.addEventListener('click', resetGame);
         difficultyEl.addEventListener('change', resetGame);
-        render();
+        resetGame();
     </script>
 </body>
 </html>
